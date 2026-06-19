@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GapTime (갭타임) - 대학생 공강 내비게이터</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="./assets/index-BLiJkBC5.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-IvpeNhSv.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 사이드바 -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="6" fill="url(#logo-grad)"/>
+            <path d="M12 6V18M6 12H18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="3" fill="#FFE5A3"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FF5E62"/>
+                <stop offset="1" stop-color="#FF9966"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-name">
+          <h1>GapTime</h1>
+          <span>공강 내비게이터</span>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <button class="menu-item active" data-tab="dashboard" id="btn-tab-dashboard">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="9" rx="1" />
+            <rect x="14" y="3" width="7" height="5" rx="1" />
+            <rect x="14" y="12" width="7" height="9" rx="1" />
+            <rect x="3" y="16" width="7" height="5" rx="1" />
+          </svg>
+          대시보드
+        </button>
+        <button class="menu-item" data-tab="timetable" id="btn-tab-timetable">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+            <path d="M9 16l2 2 4-4" />
+          </svg>
+          시간표 관리
+        </button>
+        <button class="menu-item" data-tab="navigator" id="btn-tab-navigator">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
+            <line x1="9" y1="3" x2="9" y2="18" />
+            <line x1="15" y1="6" x2="15" y2="21" />
+          </svg>
+          공강 추천/지도
+        </button>
+        <button class="menu-item" data-tab="settings" id="btn-tab-settings">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+          내 성향 및 설정
+        </button>
+        <button class="menu-item" data-tab="spaces" id="btn-tab-spaces">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          내 장소 관리
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="status-card">
+          <div class="status-indicator online"></div>
+          <div class="status-info">
+            <span class="status-label">현재 상태</span>
+            <span class="status-desc" id="current-status-text">수업 분석 대기 중</span>
+          </div>
+        </div>
+        <div class="system-time" id="system-time-display">00:00:00</div>
+      </div>
+    </aside>
+
+    <!-- 메인 컨텐츠 영역 -->
+    <main class="content-area">
+      <!-- 대시보드 탭 -->
+      <section id="tab-dashboard" class="tab-content active">
+        <header class="tab-header">
+          <div>
+            <h2 class="tab-title">대시보드</h2>
+            <p class="tab-subtitle">오늘 하루의 스케줄과 최적의 공강 추천 정보를 한눈에 확인하세요.</p>
+          </div>
+          <div class="quick-toggle-container">
+            <label class="switch-label">
+              <input type="checkbox" id="chk-exam-mode">
+              <span class="slider round"></span>
+              <span class="label-text">🔥 시험 기간 모드</span>
+            </label>
+          </div>
+        </header>
+
+        <div class="dashboard-grid">
+          <!-- 오늘 스케줄 카드 -->
+          <div class="card card-schedule">
+            <div class="card-header">
+              <h3 class="card-title">오늘의 타임라인</h3>
+              <span class="badge" id="dashboard-date-badge">오늘</span>
+            </div>
+            <div class="card-body">
+              <div class="timeline" id="today-timeline-container">
+                <!-- JS가 채워넣음 -->
+                <div class="timeline-empty">등록된 시간표가 없습니다. 시간표를 설정해 주세요.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 실시간 추천/상태 카드 -->
+          <div class="card card-status">
+            <div class="card-header">
+              <h3 class="card-title">실시간 분석</h3>
+            </div>
+            <div class="card-body flex-col-center">
+              <div class="countdown-circle">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="50" class="circle-bg"/>
+                  <circle cx="60" cy="60" r="50" class="circle-progress" id="circle-progress-bar"/>
+                </svg>
+                <div class="countdown-text" id="countdown-text">--분</div>
+              </div>
+              <h4 class="status-title" id="status-headline">현재 수업 중입니다</h4>
+              <p class="status-detail" id="status-detail-desc">다음 공강까지 시간표가 대기 중입니다.</p>
+
+              <div class="quick-nav-action hidden" id="div-quick-nav-action">
+                <button class="btn btn-primary btn-block" id="btn-quick-recommend">
+                  ⚡ 실시간 최적 추천 보기
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 퀵 추천 섹션 -->
+        <div class="section-title">오늘 추천 활동</div>
+        <div class="recommendations-row" id="today-quick-recommendations">
+          <!-- JS에서 채워 넣음 -->
+          <div class="card-empty-placeholder">
+            시간표 분석에 따른 추천 카드가 로드될 예정입니다.
+          </div>
+        </div>
+      </section>
+
+      <!-- 시간표 관리 탭 -->
+      <section id="tab-timetable" class="tab-content">
+        <header class="tab-header">
+          <div>
+            <h2 class="tab-title">시간표 관리</h2>
+            <p class="tab-subtitle">수업 일정을 등록하고 관리하며, 휴강이나 개인 일정을 손쉽게 반영할 수 있습니다.</p>
+          </div>
+          <div class="action-buttons">
+            <button class="btn btn-secondary" id="btn-export-json">💾 시간표 백업</button>
+            <button class="btn btn-secondary" id="btn-import-json">📂 시간표 복원</button>
+            <input type="file" id="file-import-input" accept=".json" style="display: none;">
+            <button class="btn btn-primary" id="btn-clear-timetable">🗑️ 전체 초기화</button>
+          </div>
+        </header>
+
+        <div class="timetable-layout">
+          <!-- 시간표 그리드 -->
+          <div class="card timetable-card">
+            <div class="timetable-grid-wrapper">
+              <table class="timetable-table" id="timetable-table-element">
+                <thead>
+                  <tr>
+                    <th>시간</th>
+                    <th>월</th>
+                    <th>화</th>
+                    <th>수</th>
+                    <th>목</th>
+                    <th>금</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 09:00부터 18:00까지 30분 단위 생성 (JS) -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 가이드 설명 및 빠른 편집 팁 -->
+          <div class="timetable-guide card">
+            <h3 class="card-title">시간표 편집 팁</h3>
+            <ul class="guide-list">
+              <li>테이블의 빈 칸을 <strong>클릭</strong>하면 새로운 수업이나 개인 일정을 등록할 수 있습니다.</li>
+              <li>등록된 수업을 <strong>클릭</strong>하면 상세 내용을 수정하거나, **휴강(임시 공강)** 처리를 할 수 있습니다.</li>
+              <li>공강 분석은 <strong>오전 9시 이전</strong> 및 <strong>해당 요일의 마지막 수업 종료 이후</strong> 시간은 자동으로 배제합니다.</li>
+              <li><strong>개인 사정</strong> 항목으로 입력 시 수업이 아니더라도 해당 시간에는 공강 추천을 하지 않습니다.</li>
+            </ul>
+            <div class="quick-preset-container">
+              <h4>기본 샘플 불러오기</h4>
+              <p class="preset-desc">빠른 테스트를 위한 가상 대학생 시간표 템플릿입니다.</p>
+              <div class="btn-group">
+                <button class="btn btn-secondary btn-sm" id="btn-load-preset-1">공학부 시간표 (우주공강형)</button>
+                <button class="btn btn-secondary btn-sm" id="btn-load-preset-2">인문대 시간표 (촘촘한 일정형)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 공강 내비게이터 탭 -->
+      <section id="tab-navigator" class="tab-content">
+        <header class="tab-header">
+          <div>
+            <h2 class="tab-title">공강 추천 & 경로 내비게이터</h2>
+            <p class="tab-subtitle">선택한 공강 시간 동안 동선을 정확히 계산하여 시간을 낭비하지 않는 최적 경로와 활동을 추천합니다.</p>
+          </div>
+        </header>
+
+        <div class="navigator-layout">
+          <!-- 동선 설정 카드 -->
+          <div class="navigator-controls card">
+            <h3 class="card-title">1. 공강 및 동선 선택</h3>
+            
+            <div class="form-group">
+              <label for="select-gap-block">🔍 분석할 공강 블록 선택</label>
+              <select id="select-gap-block" class="form-control">
+                <!-- JS에서 공강 블록들을 자동 파싱하여 추가 -->
+                <option value="">감지된 공강이 없습니다 (시간표를 확인해주세요)</option>
+              </select>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="select-start-building">🛫 출발 건물 (이전 수업)</label>
+                <select id="select-start-building" class="form-control">
+                  <!-- JS에서 빌딩 목록 로드 -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="select-end-building">🛬 도착 건물 (다음 수업)</label>
+                <select id="select-end-building" class="form-control">
+                  <!-- JS에서 빌딩 목록 로드 -->
+                </select>
+              </div>
+            </div>
+
+            <div class="summary-details">
+              <div class="detail-row">
+                <span>공강 총 시간:</span>
+                <span class="value" id="nav-val-total-time">0분</span>
+              </div>
+              <div class="detail-row">
+                <span>이동 시간 차감 (왕복):</span>
+                <span class="value text-warning" id="nav-val-travel-time">0분</span>
+              </div>
+              <div class="detail-row">
+                <span>기본 여유 버퍼:</span>
+                <span class="value text-warning" id="nav-val-buffer-time">10분</span>
+              </div>
+              <div class="detail-row highlight-net">
+                <span>순수 활용 시간 (Net):</span>
+                <span class="value text-success" id="nav-val-net-time">0분</span>
+              </div>
+            </div>
+
+            <div class="recalc-btn-container">
+              <button class="btn btn-primary btn-block" id="btn-recalculate">🔄 동선 및 추천 다시 계산</button>
+            </div>
+          </div>
+
+          <!-- 캠퍼스 맵 인터랙티브 그래픽 -->
+          <div class="navigator-map card">
+            <h3 class="card-title">2. 캠퍼스 대화형 지도</h3>
+            <p class="map-hint">건물을 클릭하면 출발/도착지로 간편하게 설정할 수 있습니다.</p>
+            <div class="map-canvas-container">
+              <!-- SVG 기반 가상 캠퍼스 지도 -->
+              <svg id="campus-svg-map" viewBox="0 0 600 400" width="100%" height="100%">
+                <!-- 배경 및 격자 무늬 -->
+                <rect width="600" height="400" fill="#1b1c24" rx="12"/>
+                <defs>
+                  <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#2a2c3a" stroke-width="0.5"/>
+                  </pattern>
+                  <!-- 그라디언트 필터 등 -->
+                  <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="5" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                  </filter>
+                </defs>
+                <rect width="600" height="400" fill="url(#grid)" rx="12"/>
+
+                <!-- 연결 도로 / 경로 선들 (백그라운드) -->
+                <g id="map-roads" opacity="0.4">
+                  <!-- 주요 도로망 뼈대 -->
+                  <path d="M 300 80 L 300 350 M 100 150 L 500 150 M 100 50 L 100 150 M 500 50 L 500 150 M 100 150 L 150 320 L 300 350 L 450 320 L 500 150" fill="none" stroke="#484f63" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+
+                <!-- 실시간 이동 동선 표시 레이어 (출발 -> 활동지 -> 도착) -->
+                <path id="path-route-line" d="" fill="none" stroke="#FF5E62" stroke-width="4" stroke-dasharray="8 6" class="route-line-anim" marker-end="url(#arrow)" style="display:none;"/>
+
+                <!-- 건물 노드들 -->
+                <!-- 1. 중앙도서관 -->
+                <g class="building-node" id="node-Library" data-building="Library" transform="translate(300, 80)">
+                  <rect x="-45" y="-20" width="90" height="40" rx="8" class="node-box"/>
+                  <text y="5" text-anchor="middle" class="node-text">📚 도서관</text>
+                </g>
+
+                <!-- 2. 공학관 -->
+                <g class="building-node" id="node-Engineering" data-building="Engineering" transform="translate(100, 150)">
+                  <rect x="-45" y="-20" width="90" height="40" rx="8" class="node-box"/>
+                  <text y="5" text-anchor="middle" class="node-text">⚙️ 공학관</text>
+                </g>
+
+                <!-- 3. 인문관 -->
+                <g class="building-node" id="node-Humanities" data-building="Humanities" transform="translate(500, 150)">
+                  <rect x="-45" y="-20" width="90" height="40" rx="8" class="node-box"/>
+                  <text y="5" text-anchor="middle" class="node-text">📖 인문관</text>
+                </g>
+
+                <!-- 4. 학생회관 -->
+                <g class="building-node" id="node-Union" data-building="Union" transform="translate(150, 320)">
+                  <rect x="-45" y="-20" width="90" height="40" rx="8" class="node-box"/>
+                  <text y="5" text-anchor="middle" class="node-text">🎪 학생회관</text>
+                </g>
+
+                <!-- 5. 체육관/운동장 -->
+                <g class="building-node" id="node-Gym" data-building="Gym" transform="translate(100, 50)">
+                  <rect x="-45" y="-20" width="90" height="40" rx="8" class="node-box"/>
+                  <text y="5" text-anchor="middle" class="node-text">🏋️ 체육관</text>
+                </g>
+
+                <!-- 6. 학생기숙사 -->
+                <g class="building-node" id="node-Dorm" data-building="Dorm" transform="translate(500, 50)">
+                  <rect x="-45" y="-20" width="90" height="40" rx="8" class="node-box"/>
+                  <text y="5" text-anchor="middle" class="node-text">🏨 기숙사</text>
+                </g>
+
+                <!-- 7. 정문 및 대학가 상가 -->
+                <g class="building-node" id="node-Gate" data-building="Gate" transform="translate(300, 350)">
+                  <rect x="-45" y="-20" width="90" height="40" rx="8" class="node-box"/>
+                  <text y="5" text-anchor="middle" class="node-text">🏪 대학상가</text>
+                </g>
+
+                <!-- 8. 자연과학관 -->
+                <g class="building-node" id="node-Science" data-building="Science" transform="translate(450, 320)">
+                  <rect x="-45" y="-20" width="90" height="40" rx="8" class="node-box"/>
+                  <text y="5" text-anchor="middle" class="node-text">🧪 과학관</text>
+                </g>
+
+                <!-- 9. 본관 -->
+                <g class="building-node" id="node-Main" data-building="Main" transform="translate(300, 200)">
+                  <rect x="-45" y="-20" width="90" height="40" rx="8" class="node-box"/>
+                  <text y="5" text-anchor="middle" class="node-text">🏫 본관</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 최종 필터링된 공강 시간 추천 리스트 -->
+        <div class="section-title">3. 순수 공강 시간(Net) 최적 추천 장소 및 활동</div>
+        <div class="recommendations-container" id="nav-recommendations-list">
+          <!-- JS가 채워넣음 -->
+          <div class="card-empty-placeholder">
+            이동 및 버퍼 시간을 차감한 순수 사용 시간 내에서 갈 수 있는 장소들이 나열됩니다.
+          </div>
+        </div>
+      </section>
+
+      <!-- 내 성향 및 설정 탭 -->
+      <section id="tab-settings" class="tab-content">
+        <header class="tab-header">
+          <div>
+            <h2 class="tab-title">내 성향 및 설정</h2>
+            <p class="tab-subtitle">개인의 속도와 선호 취향을 반영하여 추천 시스템을 고도화합니다.</p>
+          </div>
+        </header>
+
+        <div class="settings-grid">
+          <!-- 도보 및 공강 기본 설정 -->
+          <div class="card">
+            <h3 class="card-title">🚶 이동 및 도보 속도 설정</h3>
+            <div class="card-body">
+              <div class="form-group">
+                <label>내 도보 속도</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="rdo-walk-speed" value="slow">
+                    <span class="radio-text">느긋한 걸음 (느림, x1.2)</span>
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="rdo-walk-speed" value="normal" checked>
+                    <span class="radio-text">표준 속도 (보통, x1.0)</span>
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="rdo-walk-speed" value="fast">
+                    <span class="radio-text">바쁜 걸음 (빠름, x0.8)</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="num-buffer-time">⏱️ 기본 여유 버퍼 시간 (분)</label>
+                <input type="number" id="num-buffer-time" class="form-control" value="10" min="0" max="30">
+                <small class="form-text">활동을 마친 후 다음 강의실에 착석 및 준비하는 여유 시간입니다.</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- 선호 취향 설정 -->
+          <div class="card">
+            <h3 class="card-title">🎯 공강 활동 카테고리 선호도</h3>
+            <div class="card-body">
+              <div class="form-group">
+                <label>선호 카테고리 (중복 선택 가능)</label>
+                <div class="checkbox-grid">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="chk-pref-study" checked>
+                    <span class="checkbox-text">📖 공부 및 과제 (도서관/북카페)</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="chk-pref-rest" checked>
+                    <span class="checkbox-text">🛌 휴식 및 낮잠 (동아리방/수면카페)</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="chk-pref-eat" checked>
+                    <span class="checkbox-text">🍔 식사 및 혼밥 (학생식당/맛집)</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="chk-pref-cafe" checked>
+                    <span class="checkbox-text">☕ 카페 및 디저트 (가성비/수다용)</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="chk-pref-leisure" checked>
+                    <span class="checkbox-text">🎮 여가 및 오락 (코인노래방/체육관)</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="time-lunch-start">🍱 점심 시작 시간</label>
+                  <input type="time" id="time-lunch-start" class="form-control" value="11:30">
+                </div>
+                <div class="form-group">
+                  <label for="time-lunch-end">🍱 점심 종료 시간</label>
+                  <input type="time" id="time-lunch-end" class="form-control" value="13:30">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-actions">
+          <button class="btn btn-primary" id="btn-save-settings">💾 설정 저장하기</button>
+        </div>
+      </section>
+
+      <!-- 내 장소 관리 탭 -->
+      <section id="tab-spaces" class="tab-content">
+        <header class="tab-header">
+          <div>
+            <h2 class="tab-title">내 장소 관리</h2>
+            <p class="tab-subtitle">캠퍼스 기본 제공 장소 외에 나만의 비밀 스터디 스폿이나 자주 가는 맛집을 추가하여 추천 받으세요.</p>
+          </div>
+          <div>
+            <button class="btn btn-primary" id="btn-show-add-space-modal">➕ 새 장소 등록</button>
+          </div>
+        </header>
+
+        <div class="card">
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>장소/활동명</th>
+                  <th>카테고리</th>
+                  <th>위치 건물</th>
+                  <th>추천 소요시간</th>
+                  <th>설명</th>
+                  <th>관리</th>
+                </tr>
+              </thead>
+              <tbody id="custom-spaces-table-body">
+                <!-- JS가 로드함 -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 수업/일정 등록 및 편집 모달 -->
+  <div class="modal" id="modal-timetable-edit">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="timetable-modal-title">수업 일정 등록</h3>
+        <button class="modal-close" id="btn-close-timetable-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-timetable-item">
+          <input type="hidden" id="edit-day-idx">
+          <input type="hidden" id="edit-time-idx">
+          
+          <div class="form-group">
+            <label for="input-item-type">일정 구분</label>
+            <select id="input-item-type" class="form-control">
+              <option value="class">🎓 전공/교양 수업</option>
+              <option value="busy">🔒 개인 사정 (학습 제외 시간)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="input-item-name" id="label-item-name">과목명 / 일정명</label>
+            <input type="text" id="input-item-name" class="form-control" placeholder="예: 컴퓨터 알고리즘" required>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="input-item-building">위치 건물</label>
+              <select id="input-item-building" class="form-control">
+                <!-- JS에서 빌딩 목록 동적 로드 -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="input-item-room">상세 호수 (강의실)</label>
+              <input type="text" id="input-item-room" class="form-control" placeholder="예: 302호">
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="input-start-time">시작 시각</label>
+              <input type="time" id="input-start-time" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="input-end-time">종료 시각</label>
+              <input type="time" id="input-end-time" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group hidden" id="div-cancel-status">
+            <label class="checkbox-label">
+              <input type="checkbox" id="chk-is-cancelled">
+              <span class="checkbox-text text-danger">⚠️ 이번 주만 휴강 처리 (시간표에서 공강으로 전환)</span>
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-delete-timetable-item">삭제</button>
+        <button class="btn btn-primary" id="btn-save-timetable-item">저장</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 커스텀 장소 등록 모달 -->
+  <div class="modal" id="modal-space-edit">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">나만의 커스텀 장소 추가</h3>
+        <button class="modal-close" id="btn-close-space-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-space-item">
+          <div class="form-group">
+            <label for="input-space-name">장소 및 활동명</label>
+            <input type="text" id="input-space-name" class="form-control" placeholder="예: 동아리 방, 이모네 떡볶이" required>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="input-space-category">카테고리</label>
+              <select id="input-space-category" class="form-control">
+                <option value="study">📖 공부 및 과제</option>
+                <option value="rest">🛌 휴식 및 낮잠</option>
+                <option value="eat">🍔 식사 및 혼밥</option>
+                <option value="cafe">☕ 카페 및 디저트</option>
+                <option value="leisure">🎮 여가 및 오락</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="input-space-building">위치 건물</label>
+              <select id="input-space-building" class="form-control">
+                <!-- JS에서 로드 -->
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="input-space-min-time">최소 필요 시간 (분)</label>
+              <input type="number" id="input-space-min-time" class="form-control" value="30" min="5">
+            </div>
+            <div class="form-group">
+              <label for="input-space-rec-time">추천 권장 시간 (분)</label>
+              <input type="number" id="input-space-rec-time" class="form-control" value="60" min="5">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="input-space-desc">설명 및 비고</label>
+            <textarea id="input-space-desc" class="form-control" rows="3" placeholder="예: 전기 콘센트 많음, 조용하고 안락함 등"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-cancel-space-modal">취소</button>
+        <button class="btn btn-primary" id="btn-save-space-item">등록하기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 알림 배너 (Toast) -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- 메인 렌더러 로직 로드 -->
+</body>
+</html>
